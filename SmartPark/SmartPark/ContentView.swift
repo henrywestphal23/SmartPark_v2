@@ -17,23 +17,35 @@ extension CLLocationCoordinate2D {
     }
 }
 
+enum MapOptions: String, Identifiable, CaseIterable {
+    case standard
+    case hybrid
+    case imagery
+    
+    var id: String {
+        self.rawValue
+    }
+}
+
 struct ContentView: View {
     var body: some View {
-        Map {
-            Annotation("Coffee", coordinate: .coffee) {
-                Image(systemName: "cup.and.saucer.fill")
-                    .padding(4)
-                    .foregroundColor(.white)
-                    .background(.indigo)
-                    .cornerRadius(4.0)
-            }
-            
-            Annotation("Oakland", coordinate: .oakland) {
-                Image(systemName: "city.fill")
-                    .padding(4)
-                    .foregroundColor(.white)
-                    .background(.blue)
-                    .cornerRadius(4.0)
+        ZStack {
+            Map {
+                Annotation("Coffee", coordinate: .coffee) {
+                    Image(systemName: "cup.and.saucer.fill")
+                        .padding(4)
+                        .foregroundColor(.white)
+                        .background(.indigo)
+                        .cornerRadius(4.0)
+                }
+                
+                Annotation("Oakland", coordinate: .oakland) {
+                    Image(systemName: "city.fill")
+                        .padding(4)
+                        .foregroundColor(.white)
+                        .background(.blue)
+                        .cornerRadius(4.0)
+                }
             }
         }
     }
